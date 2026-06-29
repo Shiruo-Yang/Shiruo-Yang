@@ -1,6 +1,16 @@
-# Tongji University Master's Thesis Format, 2026 Sample
+# Tongji University Graduate Thesis Format, 2026 Reference
 
-This reference summarizes formatting rules extracted from an approved 2026 Tongji University master's Word thesis sample. It is intended to guide 2026 Tongji master's thesis Word/LaTeX/PDF formatting. When the Word sample conflicts with `TJ-CSCCG/TongjiThesis`, prefer the sample for master's-thesis deliverables.
+This reference summarizes formatting rules extracted from the Tongji graduate thesis writing reference example, titled `同济大学研究生学位论文写作参考示例`. It overrides earlier notes extracted from converted thesis drafts. Use thesis draft samples only as secondary evidence when this reference example is silent.
+
+## Parsed Evidence
+
+- File type: legacy Microsoft Word `.doc`.
+- Title metadata: `同济大学研究生学位论文写作规范`.
+- Last saved by: `学位办`.
+- Last saved: 2025-05-28.
+- Page count: 19.
+- Apache POI confirmed all sections use A4 portrait, top/bottom 2.54 cm, left/right 3.17 cm.
+- The document explicitly contains format notes for cover pages, abstracts, TOC, chapters, equations, figure captions, references, appendix, acknowledgements, and resume/publications.
 
 ## Source Template
 
@@ -17,207 +27,309 @@ This reference summarizes formatting rules extracted from an approved 2026 Tongj
   - `chapters/05_reference.tex`
   - `chapters/ack.tex`
 
-Important caveat: the checked template version declares `degree=bachelor` by default and warns that non-bachelor degree values fall back to bachelor format. Use it as a LaTeX framework, not as the final master's format authority.
+Important caveat: the checked template version declares `degree=bachelor` by default and warns that non-bachelor degree values fall back to bachelor format. Use it as a LaTeX framework, not as the final graduate-thesis format authority.
 
 ## Page Setup
 
-Word sample section settings:
-
-| Item | Value |
+| Item | Reference value |
 |---|---|
 | Paper | A4 portrait, 21.0 cm x 29.7 cm |
 | Top margin | 2.54 cm |
 | Bottom margin | 2.54 cm |
 | Left margin | 3.17 cm |
 | Right margin | 3.17 cm |
-| Gutter | 0 cm |
-| Header distance | 1.70-1.80 cm in most sections; 2.00 cm appears in TOC/front matter |
-| Footer distance | 1.75 cm in most sections; 1.50 cm appears in first section |
 
-Recommended LaTeX override for master's output:
+Recommended LaTeX override:
 
 ```tex
-\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=3.17cm,right=3.17cm,headsep=0.6cm,footskip=0.79cm]{geometry}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=3.17cm,right=3.17cm]{geometry}
 ```
 
-Adjust `headsep`/`footskip` only after visual PDF comparison with the sample.
+If headers/footers are used, tune `headsep` and `footskip` after visual comparison; the reference example's explicit page geometry is the stable requirement.
 
 ## Document Order
 
-The sample begins with:
+Use this order unless the user's college or submission system gives a stricter order:
 
-1. Chinese master's cover: `硕士学位论文` and `（学术学位）`.
-2. Chinese title.
-3. Candidate fields: name, student number, school, discipline, research direction, supervisor.
-4. Chinese date, e.g. `二〇二五年十二月`.
-5. English cover:
-   - `A dissertation submitted to`
-   - `Tongji University in conformity with the requirements for`
-   - `the degree of Master Engineering`
-   - English title
-   - Candidate, student number, school/department, discipline, major, research fields, supervisor, date.
-6. Chinese abstract.
-7. English abstract.
-8. Table of contents.
-9. Main chapters.
-10. References.
-11. Acknowledgements and any back matter.
+1. Chinese cover.
+2. English cover.
+3. Cover explanation page only when producing an instructional/example document; remove it from final thesis.
+4. Chinese abstract and keywords.
+5. English abstract and key words.
+6. Table of contents.
+7. Main chapters.
+8. References.
+9. Appendix.
+10. Acknowledgements.
+11. Personal resume and academic achievements during study.
+12. Originality statement.
+13. Copyright authorization.
 
-For master's theses, do not use the undergraduate `\MakeCover` and `\MakeInfoPage` output as-is.
+The reference example states that the uploaded system version, archive version, national library version, and CNKI version must be completely consistent.
 
-## Main Styles Extracted From Word
+## Chinese Cover
 
-Word measurements are stored in twentieths of a point and twips; values below are converted where useful.
+The example supports four Chinese cover types:
 
-| Purpose | Word style | Font/size | Paragraph settings | Notes |
-|---|---|---|---|---|
-| Chapter heading | `heading 1` | 黑体, 16 pt; complex-script size appears 24 pt | centered; before 24 pt; after 18 pt; line auto 12 pt; first-line indent 0 | Examples: `摘要`, `第1章 引言` |
-| English abstract heading | English abstract heading style | Arial bold, 16 pt | centered; before 24 pt; after 18 pt | Prefer official spelling `ABSTRACT` unless matching a supplied sample exactly |
-| Second-level heading | `heading 2` | 黑体, 15 pt; complex-script size appears 20 pt | before 24 pt; after 6 pt; first-line indent 0 | Examples: `1.1 光聚合技术概述` |
-| Third-level heading | `heading 3` | 黑体, 14 pt; complex-script size appears 16 pt | before 12 pt; after 6 pt; first-line indent 0 | Examples: `1.1.1 自由基光聚合` |
-| Fourth-level heading | `四级标题` | Times New Roman, 12 pt for Latin; Chinese inherits/uses body font | before 6 pt; exact line 20 pt | Examples: `2.2.3.1 结构表征`; outline level is not a normal TOC level |
-| Body paragraph | no named style in sample | Chinese body font; Latin/numbers should be Times New Roman | first-line indent usually 480 twips, about 2 Chinese characters | Main text appears as unnamed paragraphs |
-| Figure body paragraph | `图片` | 10.5 pt complex-script size | centered; before 10 pt; line auto 12 pt | Used around figure placements |
-| Figure caption | `图注` | 10.5 pt | centered; before 6 pt; after 12 pt; first-line indent 0 | Pattern: `图1.1 标题`; below figure |
-| Table caption | `表注` | 12 pt | before 6 pt; after 6 pt | Pattern: `表1.1 标题`; above table |
-| Equation paragraph | `公式` | Times New Roman for formula text; 10.5 pt complex-script size | before 6 pt; after 6 pt; first-line indent 0 | Equation numbers like `(2-1)` |
-| Bibliography | bibliography paragraph style | 11 pt; Times New Roman for complex-script/Latin | exact line 16 pt; hanging indent; direct paragraphs often left/hanging 440 twips | Entries begin `[1]...` |
-| Acknowledgements | `致谢` | 仿宋 for Chinese | direct paragraphs use first-line indent 480 twips | Title itself follows chapter/backmatter heading style |
+- Academic degree: `硕/博士学位论文` and `（学术学位）`.
+- Professional degree: `硕/博士学位论文` and `（专业学位）`.
+- Equivalent academic degree: `硕/博士学位论文` and `（同等学力学术型）`.
+- Equivalent professional degree: `硕/博士学位论文` and `（同等学力专业型）`.
 
-Default Word document style: 11 pt, complex-script 12 pt, after spacing 8 pt, line auto 278.
+Chinese cover formatting notes:
 
-## Headings And Numbering
+| Element | Format |
+|---|---|
+| `硕/博士学位论文` | 隶书, 二号, bold, centered, single spacing, 0.5 line before |
+| Degree type line | 隶书, 三号, bold, centered, single spacing |
+| Tongji logo | 2.6 cm x 10.0 cm, centered |
+| Chinese thesis title | 黑体, 二号, bold, centered, single spacing |
+| Chinese field block | 仿宋, 三号, single spacing, indent 4.5 characters |
+| Date line | 宋体, 三号, centered, single spacing |
 
-Science/engineering master's sample uses Arabic hierarchy:
+Academic-degree fields:
 
-- Chapter: `第1章 引言`
-- Section: `1.1 光聚合技术概述`
-- Subsection: `1.1.1 自由基光聚合`
-- Fourth level: `2.2.3.1 结构表征`
+- `姓    名：`
+- `学    号：`
+- `学    院：`
+- `学科门类：`
+- `一级学科：`
+- `二级学科：`
+- `研究方向：`
+- `指导教师：`
+- `联合培养单位：`
 
-Map these in LaTeX as:
+Professional-degree fields:
 
-```tex
-\chapter{引言}
-\section{光聚合技术概述}
-\subsection{自由基光聚合}
-\subsubsection{结构表征}
+- `姓    名：`
+- `学    号：`
+- `学    院：`
+- `学科门类：`
+- `专业学位类别：`
+- `专业领域：`
+- `研究方向：`
+- `指导教师：`
+- `行业导师：`
+- `联合培养单位：`
+
+Notes:
+
+- Two advisors may be filled according to actual circumstances.
+- Industry advisor and joint training institution are optional and should be omitted or left blank when not applicable.
+- Fill discipline/category fields according to the `研究生教育学科专业目录（2022年）`.
+
+## English Cover
+
+English cover wording observed:
+
+```text
+A thesis/dissertation submitted to
+Tongji University in partial fulfillment of the requirements for
+the degree of Master/Doctor of Law/Engineering/Medicine……
 ```
 
-If using `TongjiThesis`, check the generated heading sizes and spacing against this table. The checked template's current `\tjfontchapter` is `\zihao{-3}` and may not exactly match the Word sample's 16 pt chapter heading.
+English cover formatting notes:
 
-## Front Matter Details
+| Element | Format |
+|---|---|
+| Degree-selection text | Times New Roman, 四号, centered, single spacing, 0.5 line before |
+| Submission wording | Times New Roman, 四号, centered, single spacing, 0 pt before/after |
+| English title | Arial, 小二, bold, centered, single spacing |
+| English field block | Times New Roman, 三号, single spacing, indent 4.5 characters |
+| English date | Times New Roman, 三号, centered |
 
-Chinese cover fields observed:
+English fields:
 
-- `硕士学位论文`
-- `（学术学位）`
-- Thesis title
-- `姓    名：...`
-- `学    号：...`
-- `学    院：...`
-- `学科门类：...`
-- `研究方向：...`
-- `指导教师：...`
-- Chinese date
+- `Candidate:`
+- `Student Number:`
+- `School/Department:`
+- `Categories:`
+- `First-level Discipline/Degree:`
+- `Second-level Discipline/Degree’s Field:`
+- `Research Fields:`
+- `Supervisor:`
+- `Associate Supervisor:`
+- `Joint Training Institution:`
 
-English cover fields observed:
+## Running Spine / Archive Text
 
-- `A dissertation submitted to`
-- `Tongji University in conformity with the requirements for`
-- `the degree of Master Engineering`
-- English thesis title
-- `Candidate: ...`
-- `Student Number: ...`
-- `School/Department: ...`
-- `Discipline: ...`
-- `Major: ...`
-- `Research Fields: ...`
-- `Supervisor: ...`
-- English date
+The example includes a spine/archive text line:
 
-Treat repeated running text around the transition to abstract as header/footer or conversion artifact unless visual inspection proves it is intentional.
+```text
+中  文  题  目                  姓  名                   同济大学
+```
+
+Formatting notes:
+
+- Around 5 cm spacing between the three blocks.
+- 仿宋, 四号, bold, 16 pt line spacing, 0 pt before/after.
+
+Use this only when the deliverable requires the printed spine/archive text.
 
 ## Abstracts And Keywords
 
 Chinese abstract:
 
-- Heading: `摘要`, same style as chapter heading.
-- Body: first-line indent about 2 Chinese characters.
-- Keywords line: `关键词：` followed by comma-separated Chinese keywords.
+| Element | Format |
+|---|---|
+| Title `摘要` | 黑体, 三号, bold, centered, single spacing, 24 pt before, 18 pt after |
+| Body | 宋体, 小四, fixed 20 pt line spacing, 0 pt before/after, first-line indent 2 characters |
+| Keywords | 宋体, 小四, fixed 20 pt line spacing, 0 pt before/after; `关键词` bold |
 
 English abstract:
 
-- Heading: prefer `ABSTRACT` unless the supplied official sample requires otherwise.
-- Body: English paragraphs with first-line indent.
-- Keywords line: `Keywords: ...`.
+| Element | Format |
+|---|---|
+| Title `ABSTRACT` | Arial, 三号, bold, centered, single spacing, 24 pt before, 18 pt after |
+| Body | Times New Roman, 小四, fixed 20 pt line spacing, 0 pt before/after |
+| Key words | Times New Roman, 小四, fixed 20 pt line spacing, 0 pt before/after; `Key Words` bold |
 
-## Figures, Tables, Equations
+The reference example uses `Key Words:` with a space, not `Keywords:`.
 
-Figures:
+## Table Of Contents
 
-- Figure content centered.
-- Caption below figure.
-- Caption format: `图1.1 标题`.
-- Caption font/size: approximately 10.5 pt, centered.
-- Caption spacing: 6 pt before, 12 pt after.
+TOC title:
 
-Tables:
+- `目录`: 黑体, 三号, bold, centered, single spacing, 24 pt before, 18 pt after.
 
-- Caption above table.
-- Caption format: `表1.1 标题`.
-- Tables centered.
-- Use three-line tables for clean academic tables whenever possible.
-- For long tables, repeat the header and use `续表 X` on continuation pages.
-- `TongjiThesis` already supports `booktabs`, `tabularx`, `longtable`, `threeparttable`, and `threeparttablex`; reuse these.
+TOC entries:
+
+- 宋体, 小四, fixed 18 pt line spacing.
+- 0 pt before/after.
+- Page numbers right aligned.
+- Include main chapters, references, appendix, acknowledgements, and personal resume/academic achievements when present.
+
+## Main Matter
+
+Chapter title:
+
+- Example: `第1章 引言`.
+- 黑体, 三号, bold, centered, single spacing.
+- 24 pt before, 18 pt after.
+- One Chinese-character space between chapter number and chapter title.
+
+First-level heading:
+
+- Example: `1.1 概述`.
+- 黑体, 小三, single spacing.
+- 24 pt before, 6 pt after.
+- One Chinese-character space between number and title.
+
+Second-level heading:
+
+- Example: `1.1.1 线性随机结构分析`.
+- 黑体, 四号, single spacing.
+- 12 pt before, 6 pt after.
+- One Chinese-character space between number and title.
+
+Body paragraphs:
+
+- Chinese: 宋体, 小四.
+- English/numbers: Times New Roman, 小四.
+- Justified.
+- First-line indent 2 Chinese characters.
+- Fixed 20 pt line spacing.
+- 0 pt before/after.
+- If a paragraph contains mathematical expressions, adjust line spacing as needed for expression legibility.
+- The first non-heading body paragraph may use 0.7 line before when matching the reference example's visual spacing.
+
+## Equations And Figures
 
 Equations:
 
-- Equation paragraphs use centered or aligned formula layout with numbering such as `(2-1)`.
-- Spacing is about 6 pt before and after.
-- Use chapter-based numbering unless the target department requires another scheme.
+- Equation body centered.
+- Equation number right aligned.
+
+Figure captions:
+
+- Placed below the figure.
+- 宋体, 五号, centered, single spacing.
+- 6 pt before, 12 pt after.
+- One Chinese-character space between figure number and caption text.
+- Pattern: `图3.2 非线性构形状态转移过程示意图`.
+
+The reference example does not give a separate explicit table-caption note. For tables, keep the conventional thesis placement above tables and mirror the figure-caption typography unless a college-specific source says otherwise.
 
 ## References
 
-The sample uses numeric bracketed references:
+References title:
+
+- Same as chapter title: 黑体, 三号, bold, centered, single spacing, 24 pt before, 18 pt after.
+
+Reference entries:
+
+- Chinese: 宋体, 五号.
+- English: Times New Roman, 五号.
+- Hanging indent 2 characters.
+- Fixed 16 pt line spacing.
+- 0 pt before/after.
+- Numeric bracketed entries, e.g. `[1]`.
+
+Examples:
 
 ```text
-[1]Author A, Author B, Author C, et al. Title [J]. Journal, year, volume(issue): pages.
-[2]Author A, Author B. Title [J]. Journal, year, volume(issue): pages.
+[1] 陈**，车**，陈**. 具有***的工程结构动力优化设计[J]. 计算力学学报，2021，18（1）：74-80.
+[2] 吕**，金**，吴**. 钢筋混凝土***理论与应用[M]. 上海：同济大学出版社，2022.
 ```
 
-Formatting:
+Prefer GB/T 7714 numeric style when generating references from BibTeX/BibLaTeX.
 
-- About 11 pt for Latin reference text.
-- Exact line spacing about 16 pt.
-- Hanging indent is used.
-- Prefer GB/T 7714 numeric style.
+## Appendix
 
-In `TongjiThesis`, use either:
+Appendix title:
 
-```tex
-\tjbibresource{bib/references.bib}
-\makereferences
-```
+- Same as chapter title.
 
-with default `biblatex=true`, or `biblatex=false` for BibTeX/`gbt7714`.
+Appendix body:
 
-## Header And Footer
+- Chinese: 宋体, 小四.
+- English/numbers: Times New Roman, 小四.
+- Justified, first-line indent 2 Chinese characters.
+- Fixed 20 pt line spacing.
+- 0 pt before/after.
 
-Observed Word header/footer relationships include:
+## Acknowledgements
 
-- Abstract header: `摘要`.
-- English abstract header: English abstract heading.
-- TOC header: `目录`, with a `STYLEREF` field.
-- Main matter header: current chapter title, e.g. `第1章 引言`, with a `STYLEREF` field.
-- Page number fields appear in footers using `PAGE` fields.
+Acknowledgements title:
 
-For generated LaTeX/PDF, ensure headers do not accidentally show undergraduate wording from `TongjiThesis` such as `毕业设计（论文）`.
+- Same as chapter title.
+
+Acknowledgements body:
+
+- 仿宋, 小四.
+- Justified.
+- Fixed 20 pt line spacing.
+- 0 pt before/after.
+- First-line indent 2 characters.
+
+## Personal Resume And Academic Achievements
+
+Section title:
+
+- Same as chapter title.
+
+Body:
+
+- Chinese: 宋体, 五号.
+- English: Times New Roman, 五号.
+- Fixed 16 pt line spacing.
+- 0 pt before/after.
+- Academic-paper entries follow the same writing format as references.
+- Labels such as `个人简历`, `已发表论文`, `待发表论文`, and `研究报告` are bold.
+
+## Originality And Copyright Statements
+
+The reference example includes:
+
+- `同济大学学位论文原创性声明`
+- `同济大学学位论文版权使用授权书`
+
+Include these pages when required by the user's deliverable. Preserve official wording from the current school template when provided. Do not substitute older statement text if the user supplies a newer official form.
 
 ## Conversion And Delivery Notes
 
 - When converting Word to LaTeX, extract embedded images and keep stable filenames.
-- Use raw XML or `python-docx` for style audits; do not rely only on Pandoc's visual approximation.
-- If Word contains EMF/WMF drawings, convert them to PDF/PNG manually if needed for LaTeX.
+- Legacy `.doc` files may include WMF/DWG/Equation objects. Convert these to PDF/PNG or redraw equations when needed for final PDF quality.
+- Use raw XML for `.docx` and POI/Tika-style inspection for `.doc` when auditing format.
 - Keep source LaTeX, generated PDF, and generated DOCX together in a normal visible output folder.
 - After building, check file size and page count; open/read the first pages if possible.
